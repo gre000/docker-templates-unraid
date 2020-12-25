@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>traefik</Name>
+  <Repository>traefik:2.3</Repository>
+  <Registry>library/traefik - Docker Hub</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+<Support>https://github.com/gre000/docker-templates-unraid/issues</Support>
+  <Project/>
+  <Overview>Reverse Proxy</Overview>
+  <Category>Network:Web Network:Proxy</Category>
+  <TemplateURL></TemplateURL>
+  <Icon></Icon>
+  <ExtraParams></ExtraParams>
+  <PostArgs></PostArgs>
+  <CPUset/>
+  <DateInstalled>0</DateInstalled>
+  <DonateText></DonateText>
+  <DonateLink/>
+  <Description></Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>4430</HostPort>
+        <ContainerPort>443</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+      <Port>
+        <HostPort>80</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/traefik</HostDir>
+      <ContainerDir>/etc/traefik</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/var/run/docker.sock</HostDir>
+      <ContainerDir>/var/run/docker.sock</ContainerDir>
+      <Mode>ro</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+     <Variable>
+      <Value></Value>
+      <Name>HOSTINGDE_API_KEY</Name>
+      <Mode/>
+    </Variable>
+     <Variable>
+      <Value></Value>
+      <Name>HOSTINGDE_ZONE_NAME</Name>
+      <Mode/>
+    </Variable>
+    </Environment>
+  <Labels>
+    <Label>
+      <Value>true</Value>
+      <Name>traefik.enable</Name>
+      <Mode/>
+    </Label>
+    <Label>
+      <Value>auth</Value>
+      <Name>traefik.http.routers.dashboard.middlewares</Name>
+      <Mode/>
+    </Label>
+    <Label>
+      <Value>api@internal</Value>
+      <Name>traefik.http.routers.dashboard.service</Name>
+      <Mode/>
+    </Label>
+    <Label>
+      <Value>api@internal</Value>
+      <Name>traefik.http.middlewares.auth.basicauth.users</Name>
+      <Mode/>
+    </Label> 
+    <Label>
+      <Value>true</Value>
+      <Name>traefik.http.middlewares.auth.basicauth.removeheader</Name>
+      <Mode/>
+    </Label>
+      <Label>
+      <Value>Host(``)</Value>
+      <Name>traefik.http.routers.dashboard.rule</Name>
+      <Mode/>
+    </Label>    
+          <Label>
+      <Value>true</Value>
+      <Name>traefik.http.routers.dashboard.tls</Name>
+      <Mode/>
+    </Label>    
+          <Label>
+      <Value>leresolver</Value>
+      <Name>traefik.http.routers.dashboard.tls.certresolver</Name>
+      <Mode/>
+    </Label>        
+  </Labels>
+ <Config Name="Enable Traefik Dashboard" Target="traefik.enable" Default="true" Mode="" Description="Enable Traefik Dashboard" Type="Label" Display="always" Required="false" Mask="false">true</Config>
+ <Config Name="Auth Middleware" Target="traefik.http.routers.dashboard.middlewares" Default="auth" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">auth</Config>
+ <Config Name="Dashboard Service" Target="traefik.http.routers.dashboard.service" Default="api@internal" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">api@internal</Config>
+ <Config Name="Auth User Daten" Target="traefik.http.middlewares.auth.basicauth.users" Default="" Mode="" Description="" Type="Label" Display="always" Required="false" Mask="false"></Config>
+ <Config Name="Auth Header Remove" Target="traefik.http.middlewares.auth.basicauth.removeheader" Default="true" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">true</Config>
+ <Config Name="Router Rule" Target="traefik.http.routers.dashboard.rule" Default="Host(`tt.lan0.de`)" Mode="" Description="" Type="Label" Display="always" Required="false" Mask="false">Host(``)</Config>
+ <Config Name="TLS" Target="traefik.http.routers.dashboard.tls" Default="true" Mode="" Description="" Type="Label" Display="always" Required="false" Mask="false">true</Config>
+ <Config Name="TLS Resolver" Target="traefik.http.routers.dashboard.tls.certresolver" Default="leresolver" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">leresolver</Config>
+ <Config Name="https Port" Target="443" Default="443" Mode="tcp" Description="Port for https" Type="Port" Display="always" Required="false" Mask="false">443</Config>
+ <Config Name="http Port" Target="80" Default="80" Mode="tcp" Description="Port for http" Type="Port" Display="always" Required="false" Mask="false">80</Config>
+ <Config Name="Docker socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="ro" Description="Path to docker socket" Type="Path" Display="advanced" Required="true" Mask="false">/var/run/docker.sock</Config>
+ <Config Name="Docker config" Target="/etc/traefik" Default="/mnt/user/appdata/traefik" Mode="rw" Description="Path to docker socket" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/traefik</Config>
+ <Config Name="HOSTINGDE_API_KEY" Target="HOSTINGDE_API_KEY" Default="" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false"></Config>
+ <Config Name="HOSTINGDE_ZONE_NAME" Target="HOSTINGDE_ZONE_NAME" Default="" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false"></Config>
+</Container>
