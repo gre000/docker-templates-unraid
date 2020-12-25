@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>traefik</Name>
+  <Name>traefikV2</Name>
   <Repository>traefik:2.3</Repository>
   <Registry>library/traefik - Docker Hub</Registry>
   <Network>bridge</Network>
@@ -10,8 +10,8 @@
   <Project/>
   <Overview>Reverse Proxy</Overview>
   <Category>Network:Web Network:Proxy</Category>
-  <TemplateURL></TemplateURL>
-  <Icon></Icon>
+  <TemplateURL>https://github.com/gre000/docker-templates-unraid/blob/main/traefik/traefik.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/gre000/docker-templates-unraid/main/traefik/traefik-icon.png</Icon>
   <ExtraParams></ExtraParams>
   <PostArgs></PostArgs>
   <CPUset/>
@@ -23,7 +23,7 @@
     <Mode>bridge</Mode>
     <Publish>
       <Port>
-        <HostPort>4430</HostPort>
+        <HostPort>443</HostPort>
         <ContainerPort>443</ContainerPort>
         <Protocol>tcp</Protocol>
       </Port>
@@ -107,7 +107,7 @@
  <Config Name="Auth Header Remove" Target="traefik.http.middlewares.auth.basicauth.removeheader" Default="true" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">true</Config>
  <Config Name="Router Rule" Target="traefik.http.routers.dashboard.rule" Default="Host(`tt.lan0.de`)" Mode="" Description="" Type="Label" Display="always" Required="false" Mask="false">Host(``)</Config>
  <Config Name="TLS" Target="traefik.http.routers.dashboard.tls" Default="true" Mode="" Description="" Type="Label" Display="always" Required="false" Mask="false">true</Config>
- <Config Name="TLS Resolver" Target="traefik.http.routers.dashboard.tls.certresolver" Default="leresolver" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">leresolver</Config>
+ <Config Name="TLS Resolver" Target="traefik.http.routers.dashboard.tls.certresolver" Default="default" Mode="" Description="" Type="Label" Display="advanced" Required="false" Mask="false">default</Config>
  <Config Name="https Port" Target="443" Default="443" Mode="tcp" Description="Port for https" Type="Port" Display="always" Required="false" Mask="false">443</Config>
  <Config Name="http Port" Target="80" Default="80" Mode="tcp" Description="Port for http" Type="Port" Display="always" Required="false" Mask="false">80</Config>
  <Config Name="Docker socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="ro" Description="Path to docker socket" Type="Path" Display="advanced" Required="true" Mask="false">/var/run/docker.sock</Config>
