@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>ioBroker</Name>
+  <Repository>buanet/iobroker:lastest</Repository>
+  <Registry>buanet/iobroker - Docker Hub</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+<Support>https://github.com/gre000/docker-templates-unraid/issues</Support>
+  <Project/>
+  <Overview>ioBroker IoT platform</Overview>
+  <Category>Network:Web Network:Proxy</Category>
+  <TemplateURL>https://github.com/gre000/docker-templates-unraid/blob/main/iobroker/iobroker.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/gre000/docker-templates-unraid/main/iobroker/iobroker-icon.png</Icon>
+  <ExtraParams></ExtraParams>
+  <PostArgs></PostArgs>
+  <CPUset/>
+  <DateInstalled>0</DateInstalled>
+  <DonateText></DonateText>
+  <DonateLink/>
+  <Description></Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>8081</HostPort>
+        <ContainerPort>8081</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/iobroker</HostDir>
+      <ContainerDir>/opt/iobroker</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+     <Variable>
+      <Value></Value>
+      <Name>SETGID</Name>
+      <Mode/>
+    </Variable>
+     <Variable>
+      <Value>99</Value>
+      <Name>SETUID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>Europe/London</Value>
+      <Name>TZ</Name>
+      <Mode/>
+    </Variable>
+    </Environment>
+  <Labels></Labels>
+ <Config Name="http Port" Target="8081" Default="8081" Mode="tcp" Description="Port for http" Type="Port" Display="always" Required="true" Mask="false">8081</Config>
+ <Config Name="Timezone" Target="TZ" Default="Europe/London" Mode="" Description="Container Variable: TZ" Type="Variable" Display="always" Required="true" Mask="false">Europe/London</Config>
+ <Config Name="SETGID" Target="SETGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+ <Config Name="SETUID" Target="SETUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+</Container>
